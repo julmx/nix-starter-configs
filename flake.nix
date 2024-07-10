@@ -1,35 +1,49 @@
+# /etc/nixos/flake.nix
 {
-  description = "NixOS + standalone home-manager config flakes to get you started!";
+  description = "julmx nix config with flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    # nixpkgs
+
+    # NOTE: Replace "nixos-23.11" with that which is in system.stateVersion of
+    # configuration.nix. You can also use latter versions if you wish to
+    # upgrade.
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+
+    # home manager
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {nixpkgs, ...}: let
-    forAllSystems = nixpkgs.lib.genAttrs [
-      "aarch64-linux"
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
   in {
-    templates = {
-      minimal = {
-        description = ''
-          Minimal flake - contains only the configs.
-          Contains the bare minimum to migrate your existing legacy configs to flakes.
-        '';
-        path = ./minimal;
-      };
-      standard = {
-        description = ''
-          Standard flake - augmented with boilerplate for custom packages, overlays, and reusable modules.
-          Perfect migration path for when you want to dive a little deeper.
-        '';
-        path = ./standard;
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
+    nixosConfigurations = {
+      # FIXME replace with your hostname
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        # > Our main nixos configuration file <
+        modules = [./nixos/configuration.nix];
       };
     };
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    # Standalone home-manager configuration entrypoint
+    # Available through 'home-manager --flake .#your-username@your-hostname'
+    homeConfigurations = {
+      # FIXME replace with your username@hostname
+      "julmx@nixos" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {inherit inputs outputs;};
+        # > Our main home-manager configuration file <
+        modules = [./home-manager/home.nix];
+      };
+    };
   };
 }
