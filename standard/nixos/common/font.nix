@@ -15,4 +15,5 @@
       sansSerif = [ "noto-fonts"];
       monospace = [ "JetBrainsMono" ];
     };
+  };
 }
