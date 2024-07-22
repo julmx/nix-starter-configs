@@ -51,6 +51,10 @@
     yazi
 
     neovim
+    vimPlugins.LazyVim
     starship
+
+    neofetch
+    btop
   ];
 }
