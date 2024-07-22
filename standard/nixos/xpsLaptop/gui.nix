@@ -10,7 +10,7 @@
     imv
     vlc
 
-    protonvpn-gui_legacy
+  #  protonvpn-gui_legacy
   ];
   
   programs.firefox.enable = true;
