@@ -8,7 +8,7 @@
   };
   
   # Configure console keymap
-  console.keymap = "fr";
+  console.keyMap = "fr";
 
   i18n.supportedLocales = [
     "en_US.UTF-8/UTF-8"
