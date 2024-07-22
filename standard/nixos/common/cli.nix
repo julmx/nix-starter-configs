@@ -49,5 +49,8 @@
     cava
     figlet
     yazi
+
+    neovim
+    starship
   ];
 }
