@@ -20,6 +20,21 @@
     # You can also split up your configuration and import pieces of it here:
     # ./users.nix
     ../common/default.nix
+    ./linux_kernel.nix
+    ./internationalisation.nix
+    ./dns.nix
+    ./bootloader.nix
+    ./bluetooth.nix
+    ./firewall.nix
+    ./gnome.nix
+    ./networking.nix
+    ./mac_randomize.nix
+    ./opengl.nix
+    ./printing.nix
+    ./sound.nix
+    ./swap.nix
+    ./theme.nix
+    ./usb.nix
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
   ];
@@ -70,8 +85,8 @@
 
   # FIXME: Add the rest of your current configuration
 
-  # TODO: Set your hostname
-  networking.hostName = "your-hostname";
+  # Set your hostname
+  networking.hostName = "xpsLaptop";
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {
@@ -86,20 +101,7 @@
         # Add your SSH public key(s) here, if you plan on using SSH to connect
       ];
       # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel"];
-    };
-  };
-
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
-  services.openssh = {
-    enable = true;
-    settings = {
-      # Opinionated: forbid root login through SSH.
-      PermitRootLogin = "no";
-      # Opinionated: use keys only.
-      # Remove if you want to SSH using passwords
-      PasswordAuthentication = false;
+      extraGroups = ["wheel", "networkmanager", "video", "audio", "input", "tss"];
     };
   };
 
