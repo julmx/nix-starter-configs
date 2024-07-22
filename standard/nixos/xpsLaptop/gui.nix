@@ -13,6 +13,11 @@
     protonvpn-gui
 
     vscodium-fhs
+
+    # Work
+    webex
+    qgis
+    libreoffice
   ];
   
   programs.firefox.enable = true;

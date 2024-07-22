@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    alejandra
     git
     lazygit
     license-generator
