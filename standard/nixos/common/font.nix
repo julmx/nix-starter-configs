@@ -9,7 +9,7 @@
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
   ];
 
-  fontconfig = {
+  fonts.fontconfig = {
     defaultFonts = {
       serif = [ "noto-fonts"];
       sansSerif = [ "noto-fonts"];
