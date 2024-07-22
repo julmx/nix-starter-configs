@@ -13,5 +13,5 @@
       ./time.nix
       ./git.nix
       ./cli.nix
-    ]
+    ];
     }
