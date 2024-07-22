@@ -3,7 +3,16 @@
 {
   # Fonts
   fonts.packages = with pkgs; [
-    jetbrains-mono
-    nerd-font-patcher
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
   ];
+
+  fontconfig = {
+    defaultFonts = {
+      serif = [ "noto-fonts"];
+      sansSerif = [ "noto-fonts"];
+      monospace = [ "JetBrainsMono" ];
+    };
 }
