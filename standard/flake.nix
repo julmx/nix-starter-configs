@@ -1,5 +1,5 @@
 {
-  description = "Your new nix config";
+  description = "julmx config";
 
   inputs = {
     # Nixpkgs
@@ -7,6 +7,7 @@
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master"; # for xpsLaptop nvidia config
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
     # Home manager
@@ -18,6 +19,7 @@
     self,
     nixpkgs,
     home-manager,
+    nixos-hardware,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -26,8 +28,8 @@
       "aarch64-linux"
       "i686-linux"
       "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
+     # "aarch64-darwin"
+     # "x86_64-darwin"
     ];
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
@@ -58,6 +60,8 @@
         modules = [
           # > Our main nixos configuration file <
           ./nixos/xpsLaptop/configuration.nix
+          # add your model from this list: https://github.com/NixOS/nixos-hardware/blob/master/flake.nix
+          nixos-hardware.nixosModules.dell-xps-15-9550
         ];
       };
     };
