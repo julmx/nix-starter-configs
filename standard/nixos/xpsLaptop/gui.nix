@@ -11,6 +11,8 @@
     vlc
 
     protonvpn-gui
+
+    vscodium-fhs
   ];
   
   programs.firefox.enable = true;
