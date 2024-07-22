@@ -14,6 +14,6 @@
   ];
   
   programs.firefox.enable = true;
-  programs.firefox.languagePacks = ["fr", "en-US"]
+  programs.firefox.languagePacks = ["fr" "en-US"]
 
 }
