@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     alejandra
     git
+    onefetch # like neofetch for git
     lazygit
     license-generator
     git-ignore
@@ -21,7 +22,6 @@
     # skim #fzf better alternative in rust
     monolith # archive a webpage
     aria
-    # macchina #neofetch alternative in rust
     sd
     ouch
     duf
@@ -31,6 +31,7 @@
     gh
     trash-cli
     zoxide
+    eza
     tokei
     fzf
     bat
@@ -57,5 +58,11 @@
 
     neofetch
     btop
+
+    unzip
+    p7zip
+    unrar
   ];
+
+environment.variables.EDITOR = "nvim";
 }
