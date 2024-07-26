@@ -1,10 +1,8 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     kitty
     cool-retro-term
-  
+
     zathura
     mpv
     imv
@@ -14,13 +12,14 @@
 
     vscodium-fhs
 
+    stremio
+
     # Work
     webex
     qgis
     libreoffice
   ];
-  
+
   programs.firefox.enable = true;
   programs.firefox.languagePacks = ["fr" "en-US"];
-
 }
